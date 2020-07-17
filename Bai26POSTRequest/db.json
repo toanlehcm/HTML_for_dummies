@@ -1,0 +1,40 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "content": "go to school"
+    },
+    {
+      "id": 2,
+      "content": "go to English class"
+    },
+    {
+      "id": 3,
+      "content": "hang out with gf"
+    },
+    {
+      "content": "go to class",
+      "id": 4
+    },
+    {
+      "content": "go to home",
+      "id": 5
+    },
+    {
+      "content": "homework",
+      "id": 6
+    },
+    {
+      "content": "exercise",
+      "id": 7
+    },
+    {
+      "content": "html",
+      "id": 8
+    },
+    {
+      "content": "css",
+      "id": 9
+    }
+  ]
+}

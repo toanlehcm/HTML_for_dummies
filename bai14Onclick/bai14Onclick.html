@@ -1,0 +1,53 @@
+<input type="text" id="input_text" name="input_text"/>
+				
+<button id="add_item">Add</button>
+
+<ul id="ex"></ul>
+
+<script type="text/javascript">
+    var list_str = [
+        'take shower', 
+        'have a walk', 
+        'go to bed'
+    ];
+
+    var add_btn = document.getElementById('add_item');
+    //add_btn.onclick = addItem;
+    add_btn.addEventListener('click', addItem);
+    add_btn.addEventListener('click', function() {
+        console.log('add event');
+    }); //anomyous function
+    // add_btn co 1 array ben trong la addEventListener.
+    // listenner { 'click': [addItem, ]} 
+
+    //add_btn triggers a click event.
+    // a click event is triggered
+    // event listener,
+
+    function addItem() {
+        //get value of the input
+        var input_text = document.getElementById('input_text');
+        var newItem = input_text.value
+
+        //add to list_str array
+        list_str.push(newItem);
+        
+        //re-render
+        render();
+
+        //clear input
+        input_text.value = '';
+    }
+
+    function render() {
+        var html_lst = document.getElementById('ex');
+
+        var content = list_str.map(function(item) {
+            return '<li>' + item + '</li>';
+        });
+
+        html_lst.innerHTML = content.join('');
+    };
+
+    render();
+</script>

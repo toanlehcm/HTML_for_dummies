@@ -1,0 +1,53 @@
+<!-- debug, call stck, breakpoints -->
+<input type="text" id="new_item" name="input_text"/>
+				
+<button id="add_btn">Add</button>
+
+<ul id="todo_list"></ul>
+
+<script type="text/javascript">
+    var storageKey = 'todoList';
+    var dataString = localStorage.getItem(storageKey);
+
+    var todoList;
+
+    if (dataString) {
+        todoList = JSON.parse(dataString);
+    } else {
+        todoList = [];
+    }
+
+    var add_btn = document.getElementById('add_btn');
+    //add_btn.onclick = addItem;
+    add_btn.addEventListener('click', addItem);
+
+    function addItem() {
+        //get value of the input
+        var input = document.getElementById('new_item');
+        var newItem = input.value;
+
+        //add to todoList array
+        todoList.push(newItem);
+        
+        //re-render
+        render();
+
+        //clear input
+        input.value = '';
+
+        //store data
+        localStorage.setItem(storageKey, JSON.stringify(todoList));
+    }
+
+    function render() {
+        var html_lst = document.getElementById('todo_list');
+
+        var content = todoList.map(function(item) {
+            return '<li>' + item + '</li>';
+        });
+
+        html_lst.innerHTML = content.join('');
+    };
+
+    render();
+</script>

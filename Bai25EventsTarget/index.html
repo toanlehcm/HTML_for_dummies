@@ -1,0 +1,79 @@
+<!-- event's target -->
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <input type="text" id="new_item" />
+        <button id="add_btn">Add</button>
+        <ul id="todo_list">
+            <!-- <li data-id="1">take shower</li>
+            <li data-id="2" data-is-done="true">have a walk</li>
+            <li data-id="3">go to bed</li> -->
+        </ul>
+        
+        <script type="text/javascript">
+            var storageKey = 'todoList';
+            var dataString = localStorage.getItem(storageKey);
+            var html_lst = document.getElementById('todo_list');
+            var add_btn = document.getElementById('add_btn');
+        
+            //add_btn.onclick = addItem;
+            add_btn.addEventListener('click', addItem); //by event
+            html_lst.addEventListener('click', onListClicked);
+
+            var todoList;
+        
+            if (dataString) {
+                todoList = JSON.parse(dataString);
+            } else {
+                todoList = [];
+            }
+        
+            function onListClicked(event) {//thang thu nhat trong cac tham so dau vao. Duoc goi o callback, truyen 1 bien vao callback. Mouse event.
+                var button = event.target;
+                var i = parseInt(button.dataset.id);
+                todoList.splice(i, 1);
+                render();
+                localStorage.setItem(storageKey, todoList);
+            }
+        
+            function addItem() {
+                //get value of the input
+                var input = document.getElementById('new_item');
+                var newItem = input.value;
+        
+                //add to todoList array
+                todoList.push(newItem);
+                
+                //re-render
+                render();
+        
+                //clear input
+                input.value = '';
+        
+                //store data
+                localStorage.setItem(storageKey, JSON.stringify(todoList));
+            }
+        
+            function render() {
+                var content = todoList.map(function(item, index) {
+                    return '<li>' + item + ' <button data-id="' + index + '">Delete</button></li>';
+                });
+        
+                html_lst.innerHTML = content.join('');
+            };
+        
+            render();
+        </script>
+    </body>
+</html>
