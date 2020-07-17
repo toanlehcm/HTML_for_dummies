@@ -1,2 +1,5 @@
 # HTML_for_dummies
-HTML_CSS_JS
+
+## 18/7/2020
+
+    Implement course html for dummies.
